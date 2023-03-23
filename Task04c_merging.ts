@@ -2,7 +2,7 @@ import { CustomerSignin } from "@commercetools/platform-sdk";
 import * as checkout from "./handson/order";
 import { log } from "./utils/logger";
 
-const customerKey = "tt-customer";
+const customerKey = "om-customer";
 
 const mergingProcessTest = async () => {
     let anonymousCart = await checkout.createAnonymousCart();
@@ -17,10 +17,10 @@ const mergingProcessTest = async () => {
     log("Customer Cart: " + customerCart.body.id);
 
     const customerDetails: CustomerSignin = {
-        email: "test@test.com",
+        email: "om@test.com",
         password: "password",
         anonymousCartId: anonymousCart.body.id,
-        anonymousCartSignInMode: "MergeWithExistingCustomerCart", // try switching to UseAsNewActiveCustomerCart
+        anonymousCartSignInMode: "UseAsNewActiveCustomerCart", // try switching to UseAsNewActiveCustomerCart | MergeWithExistingCustomerCart
     };
 
     let result = await checkout.customerSignIn(customerDetails);

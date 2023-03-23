@@ -3,21 +3,21 @@ import * as states from "./handson/states";
 import { log } from "./utils/logger";
 
 const orderPackedStateDraft: StateDraft = {
-    key: "tt-order-packed",
+    key: "om-order-packed",
     type: "OrderState",
     name: {
-        de: "TT Order Packed ",
-        en: "TT Order Packed ",
+        de: "om Order Packed ",
+        en: "om Order Packed ",
     },
     initial: true,
 };
 
 const orderCompletedStateDraft: StateDraft = {
-    key: "tt-order-completed",
+    key: "om-order-completed",
     type: "OrderState",
     name: {
-        de: "TT Order Completed ",
-        en: "TT Order Completed ",
+        de: "om Order Completed ",
+        en: "om Order Completed ",
     },
     initial: false,
 };

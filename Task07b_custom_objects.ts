@@ -4,7 +4,7 @@ import { log } from "./utils/logger";
 
 const customObjectDraft: CustomObjectDraft = {
     container: "compatibility-info",
-    key: "tulip-seed-product",
+    key: "om-tulip-seed-product",
     value: {
         IncompatibleProducts: ["basil-seed-product"],
         LeafletID: "leaflet_1234",

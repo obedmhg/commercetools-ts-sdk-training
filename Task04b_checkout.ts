@@ -2,9 +2,9 @@ import * as checkout from "./handson/order";
 import { createPayment } from "./handson/payment";
 import { log } from "./utils/logger";
 
-const customerKey = "tt-customer";
-const cartId = "";
-const orderId = "";
+const customerKey = "om-customer";
+const cartId = "fc9b0e9a-c8e4-4195-bffc-8abbbede0dc8";
+const orderId = "cc3759bc-c125-4ac9-89bf-8f2be13487c6";
 
 const paymentDraft = {
     key: "payment" + Math.random().toString(36).substring(2, 7),
@@ -19,7 +19,7 @@ const paymentDraft = {
 }
 
 // create a cart and update the cartId variable
-checkout.createCart(customerKey).then(log).catch(log);
+//checkout.createCart(customerKey).then(log).catch(log);
 
 // checkout.addLineItemsToCart(cartId, ["tulip-seed-box", "tulip-seed-sack"]).then(log).catch(log);
 
@@ -34,7 +34,7 @@ checkout.createCart(customerKey).then(log).catch(log);
 
 // set order state to confirmed and custom workflow state to order packed
 // checkout.setOrderState(orderId, "Confirmed").then(log).catch(log);
-// checkout.updateOrderCustomState(orderId, "tt-order-packed").then(log).catch(log);
+// checkout.updateOrderCustomState(orderId, "om-order-packed").then(log).catch(log);
 
 const checkoutProcess = async () => {
 
@@ -44,9 +44,9 @@ const checkoutProcess = async () => {
         emptyCart.body.id, ["tulip-seed-box", "tulip-seed-sack"]
     );
 
-    filledCart = await checkout.addDiscountCodeToCart(
+    /*filledCart = await checkout.addDiscountCodeToCart(
         filledCart.body.id, "SUMMER"
-    );
+    );*/
 
 
     filledCart = await checkout.recalculate(filledCart.body.id);
@@ -57,7 +57,7 @@ const checkoutProcess = async () => {
 
     let order = await checkout.createOrderFromCart(filledCart.body.id);
     order = await checkout.setOrderState(order.body.id, "Confirmed");
-    order = await checkout.updateOrderCustomState(order.body.id, "tt-order-packed");
+    order = await checkout.updateOrderCustomState(order.body.id, "om-order-packed");
     if (order) {
         return {
             status: 201,
@@ -66,4 +66,4 @@ const checkoutProcess = async () => {
     }
 };
 
-// checkoutProcess().then(log).catch(log);
+ checkoutProcess().then(log).catch(log);

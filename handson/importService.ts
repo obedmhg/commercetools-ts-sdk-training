@@ -12,7 +12,11 @@ import csvtojsonV2 from "csvtojson";
 import { importApiRoot } from "./client";
 
 export const createImportContainer = (key: string): Promise<ClientResponse<ImportContainer>> => {
-    throw new Error("Function not implemented")
+    return importApiRoot.importContainers().post({
+        body : {
+            key
+        }
+    }).execute();
 }
 
 export const checkImportSummary = (importContainerKey: string): Promise<ClientResponse<ImportSummary>> => {
@@ -46,8 +50,12 @@ export const checkImportOperationStatusById = (id: string): Promise<ClientRespon
 }
 
 export const importProductDrafts = async (importContainerKey: string): Promise<ClientResponse<ImportResponse>> => {
-    throw new Error("Function not implemented")
-}
+    return importApiRoot.productDrafts().importContainers().withImportContainerKeyValue({importContainerKey}).post(
+        {
+            body : await createProductDraftImportRequest()
+        }
+    ).execute();
+    }
 
 const createProductDraftImportRequest = async (): Promise<ProductDraftImportRequest> =>
 ({
@@ -58,7 +66,7 @@ const createProductDraftImportRequest = async (): Promise<ProductDraftImportRequ
 
 const getProductDraftImportArray = async (): Promise<Array<ProductDraftImport>> => {
 
-    const participantNamePrefix = "tt";
+    const participantNamePrefix = "om";
 
     // Get products data from csv
     const products = await csvtojsonV2()

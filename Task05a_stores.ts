@@ -3,23 +3,23 @@ import { getStoreByKey, getCustomersInStore, createInStoreCart } from "./handson
 import { getCustomerByKey } from "./handson/customer";
 import { log } from "./utils/logger";
 
-const storeKey = "berlin-store";
+const storeKey = "store01";
 
-// getStoreByKey(storeKey).then(log).catch(log);
+ getStoreByKey(storeKey).then(log).catch(log);
 
-// getCustomersInStore(storeKey)
-//     .then(customers => {
-//         log(customers.body.count);
-//         customers.body.results.forEach(customer =>
-//             log(customer.id)
-//         )
-//     })
-//     .catch(log);
+getCustomersInStore(storeKey)
+    .then(customers => {
+        log(customers.body.count);
+        customers.body.results.forEach(customer =>
+            log(customer.id)
+        )
+    })
+    .catch(log);
 
-// getCustomerByKey("tt-customer")
-//     .then(customer => {
-//         createInStoreCart(storeKey, customer)
-//             .then(log)
-//             .catch(log);
-//     })
-//     .catch(log);
+getCustomerByKey("om-customer")
+    .then(customer => {
+        createInStoreCart(storeKey, customer)
+            .then(log)
+            .catch(log);
+    })
+    .catch(log);

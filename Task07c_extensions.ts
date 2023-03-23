@@ -20,6 +20,18 @@ const extensionDraft: any = {
     }]
 }
 
+const extensionDraft2: any = {
+    key: "tt-order-checker",
+    destination: {
+        type: "HTTP",
+        url: "https://europe-west1-ct-support.cloudfunctions.net/training-extensions-sample"
+    },
+    triggers: [{
+        resourceTypeId: "order",
+        actions: ["Create"]
+    }]
+}
+
 
 // const { clientId, clientSecret } = readConfig(Prefix.AWS);
 // const extensionDraft: ExtensionDraft = {

@@ -3,10 +3,10 @@ import { apiRoot } from "./handson/client";
 import { log } from "./utils/logger";
 
 const typeDraft: TypeDraft = {
-    key: "tt-allowed-to-place-orders",
+    key: "om-allowed-to-place-orders",
     name: {
-        "de": "tt allowed to place orders",
-        "en": "tt allowed to place orders"
+        "de": "om allowed to place orders",
+        "en": "om allowed to place orders"
     },
     description: {
         "de": "allow a customer to place orders",
@@ -26,9 +26,33 @@ const typeDraft: TypeDraft = {
     }]
 }
 
+const typeDraft2: TypeDraft = {
+    key: "om-custom-fields",
+    name: {
+        "de": "om custom fields",
+        "en": "om custom fields"
+    },
+    description: {
+        "de": "om custom fields",
+        "en": "om custom fields"
+    },
+    resourceTypeIds: ["customer"],
+    fieldDefinitions: [{
+        type: {
+            name: "String"
+        },
+        name: "Nickname",
+        label: {
+            "de": "NickName",
+            "en": "NickName"
+        },
+        required: false,
+    }]
+}
+
 apiRoot
     .types()
-    .post({ body: typeDraft })
+    .post({ body: typeDraft2 })
     .execute()
     .then(log)
     .catch(log);
